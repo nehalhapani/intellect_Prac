@@ -7,7 +7,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.primary,
     paddingHorizontal: scale(20)
-  } as ViewStyle,  
+  } as ViewStyle,
+  flexRow: {
+    flexDirection: 'row'
+  } as ViewStyle, 
 
   // Top view
   titleText:{

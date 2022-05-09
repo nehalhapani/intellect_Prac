@@ -1,5 +1,5 @@
-import React, {FC, useMemo, useState} from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
+import React, { FC, useState } from 'react';
+import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
 import styles from './styles';
 import {NavigatorParamList} from '../../navigator';
 import {Button, Text} from '../../components';
@@ -10,10 +10,13 @@ import {bgCounter, cancel} from '../../assets';
 import Slider from 'react-native-slider';
 import {colors} from '../../utils/colors';
 import ProgressCircle from 'react-native-progress-circle';
-import {scale, verticalScale} from '../../utils/scale';
-import Dash from 'react-native-dash';
+import { scale } from '../../utils/scale';
 
-type NavigationType = StackScreenProps<NavigatorParamList, 'scaleMeter'>;
+type NavigationType = StackNavigationProp<NavigatorParamList, 'scaleMeter'>;
+
+/**
+ * Scale meter screen
+ */
 export const ScaleMeterScreen: FC<
   StackScreenProps<NavigatorParamList, 'scaleMeter'>
 > = () => {
@@ -22,11 +25,14 @@ export const ScaleMeterScreen: FC<
   const [currentIndex, setCurrentIndex] = useState(1);
   const [pyramidIndex, setPyramidIndex] = useState(0);
 
+/** Manage on next press button */
   const onNextPress = () => {
     if (currentIndex < 5) {
       setCurrentIndex(currentIndex + 1);
     }
   };
+
+/** Manage on cancel press icon */
   const onCancelPress = () => {
     if (currentIndex != 1) {
       setCurrentIndex(currentIndex - 1);
@@ -35,9 +41,10 @@ export const ScaleMeterScreen: FC<
     }
   };
 
+/** Render UI for top progress steps */
   const renderTopBar = () => {
     return (
-      <View style={{flexDirection: 'row'}}>
+      <View style={styles.flexRow}>
         {[...Array(5)].map((_, index) => {
           return (
             <View
@@ -55,6 +62,8 @@ export const ScaleMeterScreen: FC<
       </View>
     );
   };
+
+/** Render circular progress */
   const renderCircularProgress = () => {
     return (
       <View style={styles.progressContainer}>
@@ -148,6 +157,8 @@ export const ScaleMeterScreen: FC<
       </View>
     );
   };
+
+/** Render progress slider */
   const renderSlider = () => {
     return currentIndex == 1 ? (
       <Slider
@@ -166,6 +177,8 @@ export const ScaleMeterScreen: FC<
       <View style={styles.trackContainer} />
     );
   };
+
+/** Render Next button */
   const renderButton = () => {
     return (
       <SafeAreaView>
@@ -173,6 +186,7 @@ export const ScaleMeterScreen: FC<
       </SafeAreaView>
     );
   };
+
   return (
     <Screen preset="fixed" style={styles.root}>
       <View style={styles.flexWrapperMain}>

@@ -1,12 +1,16 @@
 import React, {FC} from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
+import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
 import styles from './styles';
 import {NavigatorParamList} from '../../navigator';
 import {Button, Text} from '../../components';
 import {Screen} from '../../components/screen/screen';
 import {useNavigation} from '@react-navigation/native';
 
-type NavigationType = StackScreenProps<NavigatorParamList, 'home'>;
+type NavigationType = StackNavigationProp<NavigatorParamList, 'home'>;
+
+/**
+ * Home screen
+ */
 export const HomeScreen: FC<
   StackScreenProps<NavigatorParamList, 'home'>
 > = () => {
